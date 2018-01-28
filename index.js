@@ -9,7 +9,8 @@ app.get('/', (req, res) => {
     const len = parseInt(query.l) || 30
     const start = parseInt(query.s) || 0
     const timeout = parseInt(query.t) || 2000
-    request('https://www.proxy.org/', (e, r, b) => {
+    const size = parseInt(query.sz) || 1000
+    request('https://www.us-proxy.org/', (e, r, b) => {
         if (e) throw e
         if (!e && r.statusCode === 200) {
             let arr = []
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
                         timeout
                     }, (error, response, body) => {
                         completed.push(i)
-                        if (body && body.length > 10000)
+                        if (body && body.length > size)
                             good.push([[`${el[0]}`], [`${el[1]}`]])
                         if (arr.length == completed.length) {
                             if (good.length > 0)
