@@ -22,7 +22,6 @@ app.get('/', (req, res)=>{
                     arr.push([$($(el).find('td')[0]).text(), $($(el).find('td')[1]).text()])
                 }
             )
-            arr.forEach(el=>{console.log(`${el[0]}:${el[1]}`)})
                 arr.forEach((el, i)=>{
                     try{
                         request({'url':'http://yandex.ru',
