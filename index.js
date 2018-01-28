@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
     const len = parseInt(query.l) || 30
     const start = parseInt(query.s) || 0
     const timeout = parseInt(query.t) || 2000
-    request('https://www.proxy.org/', (e, r, b) => {
+    request('https://www.us-proxy.org/', (e, r, b) => {
         if (e) throw Error(e)
         if (!e && r.statusCode === 200) {
             let arr = []
@@ -24,18 +24,14 @@ app.get('/', (req, res) => {
             arr.forEach((el, i) => {
                 try {
                     request({
-                        'url': 'http://google.com',
+                        'url': 'http://yandex.ru',
                         'proxy': `http://${el[0]}:${el[1]}`,
                         timeout
                     }, (error, response, body) => {
                         completed.push(i)
-                        console.log(completed)
-                        if (body)
-                            console.log(body.length)
                         if (body && body.length > 10000)
                             good.push([[`${el[0]}`], [`${el[1]}`]])
                         if (arr.length == completed.length) {
-                            console.log(good)
                             if (good.length > 0)
                                 res.render('index', { good })
                             else
