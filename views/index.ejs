@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    td{
+        border: 1px solid #000;
+    }
+    </style>
+</head>
+<body>
+    <table>
+        <% for(var i=0; i<good.length;i++) {%>
+            <tr>
+                <% for(var j=0; j<good[i].length;j++) {%>
+                    <td><%=good[i][j] %></td>
+                <%} %>
+            </tr>
+        <%} %>
+    </table>
+</body>
+</html>
