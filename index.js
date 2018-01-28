@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     const start = parseInt(query.s) || 0
     const timeout = parseInt(query.t) || 2000
     const size = parseInt(query.sz) || 1000
-    request('https://www.us-proxy.org/', (e, r, b) => {
+    request('https://www.proxy.org/', (e, r, b) => {
         if (e) throw e
         if (!e && r.statusCode === 200) {
             let arr = []
