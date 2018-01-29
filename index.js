@@ -60,13 +60,15 @@ app.get('/list', (req, res) => {
     request(uri , (e, r, b) => {
         if (e) throw e
         if (!e && r.statusCode === 200) {
-            let list = []
+            let list = ''
             const $ = cheerio.load(b)
             $('tbody tr').each((i, el) => {
                 if (i < (len + start + 1) && i > start)
-                    list.push([$($(el).find('td')[0]).text() +':'+ $($(el).find('td')[1]).text()])
+                    list += $($(el).find('td')[0]).text() +':'+ $($(el).find('td')[1]).text()+'\n'
             })
-            res.render('list', {list})
+            res.writeHead(200, {'Content-Type': 'text/plane'})
+            res.write(list)
+            res.end()
         }
         else
             res.send('none')
